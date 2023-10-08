@@ -27,11 +27,10 @@ public class UserLabDTO {
 
     public UserLabDTO(String username, String name, String secondName, String email) {
         ownedNotes = new HashMap<>();
-
         this.username = username;
         this.name = name;
         this.secondName = secondName;
-        this.email = email;
+        if (email!=null){this.email = email;}
     }
 
     public String getUsername() {

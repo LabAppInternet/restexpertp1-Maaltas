@@ -29,7 +29,15 @@ public class NoteLabDTO {
         this.owner = owner;
     }
 
-    public NoteLabDTO(String title, String content) {
+    public NoteLabDTO(String title, String content) throws Exception {
+        for (char c : title.toCharArray()){
+            if (Character.isDigit(c)){
+                throw new Exception("The title contains a digit");
+            }
+        }
+        if (title.length()<3 || title.length()>255){
+            throw new Exception("The title must be between 3 and 255 characters");
+        }
         this.title = title;
         this.content = content;
         dateCreation = LocalDateTime.now();
