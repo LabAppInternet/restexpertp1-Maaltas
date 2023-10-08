@@ -25,11 +25,16 @@ public class UserLabDTO {
         ownedNotes = new HashMap<String, NoteLabDTO>();
     }
 
-    public UserLabDTO(String username, String name, String secondName, String email) {
+    public UserLabDTO(String username, String name, String secondName, String email) throws Exception {
         ownedNotes = new HashMap<>();
         this.username = username;
-        this.name = name;
-        this.secondName = secondName;
+        if (name.matches("^[A-Z].*") && secondName.matches("^[A-Z].*") && name.length()>3 && secondName.length()>3){
+            this.name = name;
+            this.secondName = secondName;
+        } else {
+            throw new Exception("The name and the second name must start with capital letter and have more that 3 letters");
+        }
+
         if (email!=null){this.email = email;}
     }
 
